@@ -77,7 +77,6 @@ func (h *UserHandler) Register(c *gin.Context) {
 	if err != nil {
 		slog.Error(
 			"用户注册失败",
-			"username", req.Username,
 			"error", err,
 		)
 		response.Error(c, response.CodeInternalError)

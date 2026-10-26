@@ -73,7 +73,6 @@ func (h *AuthHandler) Login(c *gin.Context) {
 	if err != nil {
 		slog.Error(
 			"用户登录失败",
-			"username", req.Username,
 			"error", err,
 		)
 		response.Error(c, response.CodeInternalError)

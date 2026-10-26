@@ -11,8 +11,8 @@ import (
 func RequestLogger() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		start := time.Now()
+		// 不记录查询参数，避免密码、令牌等敏感输入进入日志。
 		path := c.Request.URL.Path
-		query := c.Request.URL.RawQuery
 
 		c.Next()
 
@@ -20,7 +20,6 @@ func RequestLogger() gin.HandlerFunc {
 			"request",
 			"method", c.Request.Method,
 			"path", path,
-			"query", query,
 			"status", c.Writer.Status(),
 			"latency", time.Since(start),
 			"client_ip", c.ClientIP(),
