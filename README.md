@@ -10,7 +10,7 @@
 ![Redis](https://img.shields.io/badge/Redis-7.4-DC382D?logo=redis&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-[性能](#性能) · [架构](#架构) · [快速开始](#快速开始) · [接口文档](./docs/openapi.yaml) · [前端](https://github.com/jasper0507/ripple_frontend)
+[在线演示](https://ripple.jasperlab.dev) · [性能](#性能) · [架构](#架构) · [快速开始](#快速开始) · [接口文档](./docs/openapi.yaml) · [前端](https://github.com/jasper0507/ripple_frontend)
 
 </div>
 
@@ -32,11 +32,7 @@
 | 投票 / 发表评论 / 发帖 | 6% / 2% / 1% | 29.82 / 28.61 / 31.45 |
 | 登录 / 注册            |  4.5% / 0.5% |         70.22 / 90.59 |
 
-1400 RPS 能通过 60 秒短测，但十分钟验证未通过，因此 **1000 RPS 是已验证的稳定下界**。
-
 ### 优化历程
-
-首次 1000 RPS 混合压测只成功了 867 RPS，10 个接口 p95 全部超过 500ms。逐个定位后：
 
 | 瓶颈        | 根因                                                                                        | 修复                                                            | 效果                                               |
 | ----------- | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | -------------------------------------------------- |
@@ -81,8 +77,6 @@ INSERT INTO communities (name, introduction, created_at, updated_at) VALUES
 make run
 curl http://localhost:8080/api/v1/communities
 ```
-
-配置项可用环境变量覆盖：加 `RIPPLE_` 前缀、`.` 换成 `_`，如 `RIPPLE_AUTH_SECRET`。非本地环境务必替换 `auth.secret`。
 
 ## 许可证
 

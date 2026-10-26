@@ -1,0 +1,19 @@
+[mysqld]
+# Small demonstration host; do not use these limits as a production capacity claim.
+performance_schema=OFF
+mysqlx=OFF
+skip-name-resolve
+skip-log-bin
+innodb_buffer_pool_size=32M
+innodb_log_buffer_size=8M
+innodb_redo_log_capacity=64M
+max_connections=15
+thread_cache_size=4
+table_open_cache=128
+table_definition_cache=400
+key_buffer_size=1M
+tmp_table_size=8M
+max_heap_table_size=8M
+temptable_max_ram=16M
+temptable_max_mmap=0
+max_allowed_packet=8M

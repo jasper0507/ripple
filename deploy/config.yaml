@@ -1,0 +1,38 @@
+http:
+  addr: ":8080"
+  shutdown_timeout: 10s
+  trusted_proxies: ["172.30.50.2"]
+  read_timeout: 10s
+  write_timeout: 10s
+  max_body_bytes: 1048576
+mysql:
+  host: mysql
+  port: 3306
+  username: ripple
+  password: ""
+  database: ripple
+  max_open_conns: 5
+  max_idle_conns: 2
+  conn_max_lifetime: 3m
+  interpolate_params: true
+redis:
+  addr: redis:6379
+  password: ""
+  db: 0
+log:
+  level: info
+  format: json
+auth:
+  secret: ""
+  issuer: ripple
+  access_token_ttl: 15m
+  refresh_token_ttl: 168h
+  cookie_secure: true
+rate_limit:
+  enabled: true
+  api:
+    rate: 20
+    burst: 40
+  auth:
+    rate: 0.2
+    burst: 5
