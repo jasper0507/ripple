@@ -25,11 +25,8 @@ func Open(cfg *config.MySQLConfig) (*gorm.DB, error) {
 		return nil, fmt.Errorf("获取数据库连接池失败: %w", err)
 	}
 
-	// 设置打开数据库连接的最大数量
 	sqlDB.SetMaxOpenConns(cfg.MaxOpenConns)
-	// 设置空闲连接池中连接的最大数量
 	sqlDB.SetMaxIdleConns(cfg.MaxIdleConns)
-	// 设置可以重新使用连接的最大时间
 	sqlDB.SetConnMaxLifetime(cfg.ConnMaxLifetime)
 
 	return db, nil

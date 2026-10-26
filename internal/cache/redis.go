@@ -30,7 +30,7 @@ func Open(ctx context.Context, cfg *config.RedisConfig) (*redis.Client, error) {
 	return rdb, nil
 }
 
-// Close 关闭 Redis 客户端及其连接池
+// Close 关闭 Redis 客户端及其连接池。
 func Close(rdb *redis.Client) error {
 	if rdb == nil {
 		return nil

@@ -19,7 +19,6 @@ import (
 
 func main() {
 	if err := run(); err != nil {
-		// 不用 log.Fatal：SetDefault 后 log 输出会经过 slog，级别固定为 INFO
 		slog.Error("服务运行失败", "error", err)
 		os.Exit(1)
 	}
@@ -29,7 +28,6 @@ func run() error {
 	// 1. 加载配置
 	cfg, err := config.Load()
 
-	// 配置加载失败
 	if err != nil {
 		return fmt.Errorf("加载配置失败: %w", err)
 	}
@@ -37,16 +35,15 @@ func run() error {
 	// 2. 创建日志记录器
 	logger, err := applog.New(&cfg.Log)
 
-	// 日志记录器初始化失败
 	if err != nil {
 		return fmt.Errorf("初始化日志失败: %w", err)
 	}
+
 	slog.SetDefault(logger)
 
 	// 3. 初始化数据库连接
 	db, err := database.Open(&cfg.MySQL)
 
-	// 数据库连接初始化失败
 	if err != nil {
 		return fmt.Errorf("初始化 MySQL 失败: %w", err)
 	}
@@ -69,7 +66,6 @@ func run() error {
 	// 4. 初始化 Redis
 	rdb, err := cache.Open(context.Background(), &cfg.Redis)
 
-	// Redis 初始化失败
 	if err != nil {
 		return fmt.Errorf("初始化 Redis 失败: %w", err)
 	}
