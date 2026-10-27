@@ -13,7 +13,7 @@ type AccessTokenVerifier interface {
 	ParseAccessToken(string) (string, error)
 }
 
-// JWTAuth 中间件，用于验证 JWT 令牌
+// JWTAuth 中间件，用于验证 JWT 令牌。
 func JWTAuth(verifier AccessTokenVerifier) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 1. 获取 Authorization 请求头

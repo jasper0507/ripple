@@ -106,7 +106,6 @@ func (s *PostService) Detail(
 		return nil, err
 	}
 
-	// 帖子必须有作者和社区，LEFT JOIN 查不到说明数据不一致
 	if detail.AuthorUsername == nil || detail.CommunityName == nil {
 		return nil, fmt.Errorf("帖子 %d 缺少作者或社区数据", postID)
 	}

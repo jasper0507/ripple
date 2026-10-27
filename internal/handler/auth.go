@@ -88,11 +88,9 @@ func (h *AuthHandler) Login(c *gin.Context) {
 
 	// 4. 返回响应
 	response.Success(c, http.StatusOK, loginResponse{
-		Username: req.Username,
-		accessTokenResponse: accessTokenResponse{
-			AccessToken: tokens.AccessToken,
-			TokenType:   "Bearer",
-		},
+		Username:    req.Username,
+		AccessToken: tokens.AccessToken,
+		TokenType:   "Bearer",
 	})
 }
 

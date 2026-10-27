@@ -28,7 +28,6 @@ type Dependencies struct {
 func New(deps Dependencies) (*gin.Engine, error) {
 	r := gin.New()
 
-	// 只信任配置的代理转发的客户端 IP，防止伪造 X-Forwarded-For 绕过限流
 	if err := r.SetTrustedProxies(deps.TrustedProxies); err != nil {
 		return nil, fmt.Errorf("设置可信代理失败: %w", err)
 	}
@@ -40,7 +39,6 @@ func New(deps Dependencies) (*gin.Engine, error) {
 
 	authMiddleware := middleware.JWTAuth(deps.AuthVerifier)
 
-	// 健康检查
 	r.GET("/ping", handler.Ping)
 
 	api := r.Group("/api/v1")

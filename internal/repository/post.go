@@ -69,7 +69,7 @@ func (r *PostRepository) Create(
 	})
 }
 
-// Delete 软删除帖子并追加索引同步事件
+// Delete 软删除帖子并追加索引同步事件。
 // 评论和投票随帖子保留，便于恢复
 func (r *PostRepository) Delete(
 	ctx context.Context,
@@ -131,7 +131,7 @@ func (r *PostRepository) Vote(
 			return fmt.Errorf("检查帖子失败: %w", err)
 		}
 
-		// 保存投票，存在则更新状态（Upsert 操作）
+		// 保存投票，存在则更新状态
 		err = gorm.G[model.PostVote](tx).Exec(ctx,
 			`
 			INSERT INTO post_votes (post_id, user_id, direction)

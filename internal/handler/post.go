@@ -181,18 +181,16 @@ func (h *PostHandler) Detail(c *gin.Context) {
 
 	// 3. 构建响应数据
 	data := postDetailResponse{
-		postListItemResponse: postListItemResponse{
-			ID:             detail.Post.ID,
-			Title:          detail.Post.Title,
-			AuthorID:       detail.Post.AuthorID,
-			AuthorUsername: detail.AuthorUsername,
-			CommunityID:    detail.Post.CommunityID,
-			CommunityName:  detail.CommunityName,
-			CreatedAt:      detail.Post.CreatedAt,
-		},
-		Content:   detail.Post.Content,
-		UpVotes:   detail.UpVotes,
-		DownVotes: detail.DownVotes,
+		ID:             detail.Post.ID,
+		Title:          detail.Post.Title,
+		AuthorID:       detail.Post.AuthorID,
+		AuthorUsername: detail.AuthorUsername,
+		CommunityID:    detail.Post.CommunityID,
+		CommunityName:  detail.CommunityName,
+		CreatedAt:      detail.Post.CreatedAt,
+		Content:        detail.Post.Content,
+		UpVotes:        detail.UpVotes,
+		DownVotes:      detail.DownVotes,
 	}
 
 	// 4. 返回响应
@@ -306,7 +304,7 @@ func (h *PostHandler) Vote(c *gin.Context) {
 	}
 
 	// 2. 获取并校验投票方向
-	req := postVoteRequest{}
+	var req postVoteRequest
 
 	if err := c.ShouldBindJSON(&req); err != nil {
 		response.Error(c, response.CodeInvalidParams)

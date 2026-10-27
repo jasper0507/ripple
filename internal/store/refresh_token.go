@@ -124,7 +124,6 @@ func (s *RefreshTokenStore) Rotate(
 
 // refreshTokenKey 生成一个基于 SHA-256 的刷新令牌键
 func refreshTokenKey(token string) string {
-	// 对 token 进行 SHA-256 哈希
 	sum := sha256.Sum256([]byte(token))
 
 	return refreshTokenKeyPrefix + hex.EncodeToString(sum[:])

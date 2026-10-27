@@ -48,10 +48,12 @@ func (s *AuthService) Login(
 ) (*AuthTokens, error) {
 	// 1. 根据用户名查找用户
 	user, err := s.userRepo.FindByUsername(ctx, username)
+
 	if errors.Is(err, repository.ErrUserNotFound) {
 		_ = verifyPassword(dummyPasswordHash, password)
 		return nil, ErrInvalidCredentials
 	}
+
 	if err != nil {
 		return nil, err
 	}
